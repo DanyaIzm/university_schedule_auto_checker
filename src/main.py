@@ -1,9 +1,8 @@
-import requests
-from os import environ
-
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 
-from driver_manager.manager import get_driver
+from driver_manager import get_driver
+from error_manager.manager import ErrorManager
 
 
 def main():
@@ -11,14 +10,12 @@ def main():
         options = webdriver.ChromeOptions()
         # options.add_argument()
 
-        driver = webdriver.Chrome(get_driver(), options=options)
+        service = Service(get_driver())
+        driver = webdriver.Chrome(service=service)
+
 
     except Exception as e:
-        message_text = f'При попытке собрать расписание произошла ошибка:\n{e}'
-
-        requests.get(
-            f'https://api.telegram.org/bot{environ.get("TOKEN")}/sendMessage?chat_id={environ.get("ADMIN")}&text={message_text}'
-            )
+        ErrorManager(debug=True).send_erorr_message(str(e))
 
 
 
