@@ -23,7 +23,7 @@ def main():
 
         service = Service(get_driver())
 
-        scrapper = SutScrapper(service, env_manager, notifier_manager)
+        scrapper = SutScrapper(service, options, env_manager, notifier_manager)
         scrapper.check()
 
     except Exception as e:
