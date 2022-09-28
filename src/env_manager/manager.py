@@ -4,8 +4,8 @@ from os import path, environ
 
 
 class EnvManager():
-    def __init__(self, debug=False):
-        self.debug = debug
+    def __init__(self):
+        self.debug = True if not environ.get('DEBUG') else False
 
     def manage(self):
         if self.debug:

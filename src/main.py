@@ -8,7 +8,7 @@ from driver_manager import get_driver
 
 
 def main():
-    env_manager = EnvManager(debug=True)
+    env_manager = EnvManager()
     env_manager.manage()
 
     notifier_manager = NotifierManager(env_manager)
