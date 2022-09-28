@@ -1,13 +1,13 @@
 # from database import
 
 class BaseScrapper():
-    def __init__(self, driver, database_manager):
+    def __init__(self, driver, env_manager):
         self.driver = driver
-        self.database_manager = database_manager
+        self.env_manager = env_manager
 
-    def scrap_and_save(self):
+    def check(self):
         """
-        Scraps the schedule of all students in the database and saves it to the database
+        Checks all students
         """
         
         raise NotImplementedError()
