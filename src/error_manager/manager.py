@@ -1,9 +1,7 @@
 import requests
 
-from env_manager.manager import EnvManager
 
-
-class ErrorManager():
+class NotifierManager():
     def __init__(self, env_manager):
         self.env_manager = env_manager
 
