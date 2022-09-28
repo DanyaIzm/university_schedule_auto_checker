@@ -9,7 +9,6 @@ class EnvManager():
 
     def manage(self):
         if self.debug:
-            print(path.join(path.dirname(__file__), '.env'))
             load_dotenv(path.join(path.dirname(__file__), '.env'))
 
     def get_var(self, name):

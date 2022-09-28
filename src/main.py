@@ -15,7 +15,11 @@ def main():
 
     try:
         options = webdriver.ChromeOptions()
+        options.binary_location = env_manager.get_var('GOOGLE_CHROME_BIN')
+        options.add_argument("--headless")
         options.add_argument('--incognito')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
 
         service = Service(get_driver())
 

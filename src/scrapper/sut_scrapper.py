@@ -9,15 +9,15 @@ from selenium.common.exceptions import NoSuchElementException
 
 
 class SutScrapper(BaseScrapper):
-    def __init__(self, driver_service, env_manager, notifier_manager):
-        super().__init__(driver_service, env_manager, notifier_manager)
+    def __init__(self, driver_service, chrome_options, env_manager, notifier_manager):
+        super().__init__(driver_service, chrome_options, env_manager, notifier_manager)
 
     def check(self):
         url = self.env_manager.get_var('LK_URL')
         for student_info in self.env_manager.get_var('STUDENTS').split('|'):
             login, password = student_info.split(',')
             try:
-                self.driver = webdriver.Chrome(service=self.driver_service)
+                self.driver = webdriver.Chrome(service=self.driver_service, options=self.chrome_options)
                 self._check_student(url, login, password)
                 self.driver.close()
             except Exception as e:
