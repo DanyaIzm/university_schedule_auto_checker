@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
 from env_manager.manager import EnvManager
-from error_manager.manager import NotifierManager
+from notifier_manager.manager import NotifierManager
 from scrapper.sut_scrapper import SutScrapper
 from driver_manager import get_driver
 
@@ -15,12 +15,11 @@ def main():
 
     try:
         options = webdriver.ChromeOptions()
-        # options.add_argument()
+        options.add_argument('--incognito')
 
         service = Service(get_driver())
-        driver = webdriver.Chrome(service=service)
 
-        scrapper = SutScrapper(driver, env_manager, notifier_manager)
+        scrapper = SutScrapper(service, env_manager, notifier_manager)
         scrapper.check()
 
     except Exception as e:
