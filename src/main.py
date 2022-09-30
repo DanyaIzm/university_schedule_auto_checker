@@ -43,7 +43,7 @@ def main():
 
 def create_scheduler_tasks():
     schedule.every(10).minutes.do(main)
-    schedule.every().day.do(update_service)
+    schedule.every().hour.do(update_service)
 
 
 def run_scheduler():
