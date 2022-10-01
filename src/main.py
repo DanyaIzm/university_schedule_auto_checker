@@ -10,10 +10,7 @@ from misc.time_controller import time_control
 from service_manager.manager import get_service
 
 
-# TODO: refactor service (singleton)
-def update_service():
-    global service
-    service = get_service()
+service = get_service()
 
 
 @time_control(9, 19)
@@ -43,7 +40,6 @@ def main():
 
 def create_scheduler_tasks():
     schedule.every(10).minutes.do(main)
-    schedule.every().hour.do(update_service)
 
 
 def run_scheduler():
@@ -53,9 +49,5 @@ def run_scheduler():
 
 
 if __name__ == '__main__':
-    # TODO: refactor this (singleton)
-    global service
-    service = get_service()
-
     create_scheduler_tasks()
     run_scheduler()
